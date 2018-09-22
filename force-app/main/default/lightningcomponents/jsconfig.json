@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c-progress_ring": [
+                "progress_ring/progress_ring.js"
+            ],
+            "c-reactive_demo": [
+                "../../../../implementation/main/default/lightningcomponents/reactive_demo/reactive_demo.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ]
+}

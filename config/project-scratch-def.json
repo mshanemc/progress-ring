@@ -1,0 +1,14 @@
+{
+  "orgName": "lwcPlayground",
+  "edition": "Developer",
+  "features": ["LightningWebComponents"],
+  "orgPreferences": {
+    "enabled": [
+      "S1DesktopEnabled",
+      "PathAssistantsEnabled"
+    ],
+    "disabled": [
+      "S1EncryptedStoragePref2"
+    ]
+  }
+}

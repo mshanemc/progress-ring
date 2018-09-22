@@ -1,0 +1,14 @@
+<template>
+    <div class={computedOuterClass}>
+      <div class="slds-progress-ring__progress" role="progressbar" aria-valuemin={min} aria-valuemax={max} aria-valuenow={current}>
+        <svg viewBox="-1 -1 2 2">
+          <path if:true={show} class="slds-progress-ring__path" d={d}></path>
+        </svg>
+      </div>
+      <div class="slds-progress-ring__content">
+        <lightning-icon if:true={isWarning} icon-name="utility:warning" alternative-text="Warning"></lightning-icon>
+        <lightning-icon if:true={isExpired} icon-name="utility:error" alternative-text="Expired"></lightning-icon>
+        <lightning-icon if:true={isComplete} icon-name="utility:check" alternative-text="Complete"></lightning-icon>
+      </div>
+    </div>
+</template>
