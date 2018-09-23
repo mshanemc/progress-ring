@@ -15,7 +15,7 @@ export default class progress_ring extends Element {
   @api autocomplete;
 
   @api
-  set direction(value){
+  set direction(value) {
     if (value === 'drain') {
         this.inverter = 1;
         this.filldrain = 1;
@@ -26,7 +26,7 @@ export default class progress_ring extends Element {
   }
 
   @api
-  get direction(){
+  get direction() {
     return this._direction;
   }
 
@@ -40,7 +40,7 @@ export default class progress_ring extends Element {
   }
 
   @api
-  get current(){
+  get current() {
     return this._current;
   }
 
@@ -51,12 +51,12 @@ export default class progress_ring extends Element {
   @track isExpired = false;
   @track isComplete = false;
 
-  constructor(){
+  constructor() {
     super();
     this.direction = 'fill';
   }
 
-  connectedCallback(){
+  connectedCallback() {
     this.init();
     this.recaclc();
     this.show = true;
