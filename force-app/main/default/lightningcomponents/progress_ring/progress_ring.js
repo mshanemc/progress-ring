@@ -18,7 +18,7 @@ export default class progress_ring extends Element {
   set direction(value){
     if (value === 'drain') {
         this.inverter = 1;
-        this. filldrain = 1;
+        this.filldrain = 1;
       } else if (value === 'fill') {
         this.inverter = -1;
         this.filldrain = 0;
