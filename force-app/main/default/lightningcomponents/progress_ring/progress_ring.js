@@ -5,15 +5,34 @@ export default class progress_ring extends Element {
   min = 0;
   max = 100;
   themeclass = '';
+  _current = 0;
+  _direction;
+  inverter;
+  filldrain;
 
-  @api direction = 'fill';
   @api theme;
   @api size;
   @api autocomplete;
 
   @api
+  set direction(value){
+    if (value === 'drain') {
+        this.inverter = 1;
+        this. filldrain = 1;
+      } else if (value === 'fill') {
+        this.inverter = -1;
+        this.filldrain = 0;
+      }
+  }
+
+  @api
+  get direction(){
+    return this._direction;
+  }
+
+  @api
   set current(value){
-    this.privateCurrent = value;
+    this._current = value;
     // don't do until after connectedCallback()
     if (this.show) {
       this.recaclc();
@@ -22,7 +41,7 @@ export default class progress_ring extends Element {
 
   @api
   get current(){
-    return this.privateCurrent;
+    return this._current;
   }
 
   @track d;
@@ -31,7 +50,11 @@ export default class progress_ring extends Element {
   @track isWarning = false;
   @track isExpired = false;
   @track isComplete = false;
-  @track privateCurrent = 0;
+
+  constructor(){
+    super();
+    this.direction = 'fill';
+  }
 
   connectedCallback(){
     this.init();
@@ -75,23 +98,13 @@ export default class progress_ring extends Element {
 
   recaclc() {
 
-    const fillPercent = this.privateCurrent / this.max;
-    let inverter;
-    let filldrain;
-
-    if (this.direction === 'drain') {
-      inverter = 1;
-      filldrain = 1;
-    } else if (this.direction === 'fill') {
-      inverter = -1;
-      filldrain = 0;
-    }
+    const fillPercent = this._current / this.max;
 
     const arcx = Math.cos(2 * Math.PI * fillPercent);
-    const arcy = Math.sin(2 * Math.PI * fillPercent) * inverter;
+    const arcy = Math.sin(2 * Math.PI * fillPercent) * this.inverter;
     const islong = fillPercent > 0.5 ? 1 : 0;
 
-    this.d = `M 1 0 A 1 1 0 ${islong} ${filldrain} ${arcx} ${arcy} L 0 0`;
+    this.d = `M 1 0 A 1 1 0 ${islong} ${this.filldrain} ${arcx} ${arcy} L 0 0`;
 
     // handling for autocomplete
     if (this.autocomplete){
