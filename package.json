@@ -1,11 +1,19 @@
 {
-  "name": "lwcPlayground",
+  "name": "progress-ring",
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "sfdx shane:org:delete; ./orgInit.sh",
-    "reset": "echo \"sfdx force:apex:execute -f scripts/dataWipe.cls && sfdx force:apex:execute -f scripts/init.cls\""
+    "reset": "echo \"sfdx force:apex:execute -f scripts/dataWipe.cls && sfdx force:apex:execute -f scripts/init.cls\"",
+    "lint": "npm run lint:lwc && npm run lint:aura",
+    "lint:lwc": "eslint --max-warnings 0 force-app/main/default/lwc",
+    "lint:aura": "sfdx force:lightning:lint force-app --exit",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "lts-jest test",
+    "test:unit:watch": "lts-jest --watch",
+    "test:unit:debug": "lts-jest --debug",
+    "prettier": "prettier --write '**/*.js'",
+    "prettier:staged": "./bin/prettier-staged.js"
   },
   "nodemonConfig": {
     "watch": [
@@ -17,15 +25,31 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mshanemc/lwc.git"
+    "url": "git+https://github.com/mshanemc/progress-ring.git"
   },
   "author": "Shane McLaughlin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mshanemc/lwc/issues"
+    "url": "https://github.com/mshanemc/progress-ring/issues"
   },
-  "homepage": "https://github.com/mshanemc/lwc",
+  "homepage": "https://github.com/mshanemc/progress-ring",
+  "engines": {
+    "node": ">= 8.9.4",
+    "npm": ">= 5.7.1"
+  },
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "eslint": "4.19.1",
+    "eslint-plugin-lwc": "0.5.1",
+    "husky": "^0.15.0-rc.8",
+    "lts-jest": "0.3.10",
+    "nodemon": "^1.18.3",
+    "prettier": "1.10.2",
+    "semver": "^5.5.0",
+    "shelljs": "^0.8.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier:staged && npm run lint"
+    }
   }
 }

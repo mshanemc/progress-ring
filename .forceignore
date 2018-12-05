@@ -3,6 +3,10 @@
 #
 
 package.xml
-force-app/main/default/lightningcomponents/jsconfig.json
+force-app/main/default/lwc/jsconfig.json
 
-force-app/main/default/lightningcomponents/.eslintrc.json
+force-app/main/default/lwc/.eslintrc.json
+
+implementation/main/default/lwc/jsconfig.json
+
+implementation/main/default/lwc/.eslintrc.json

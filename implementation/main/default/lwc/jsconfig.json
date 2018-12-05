@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c-progress_ring": [
+                "../../../../force-app/main/default/lwc/progress_ring/progress_ring.js"
+            ],
+            "c-reactive_demo": [
+                "reactive_demo/reactive_demo.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ]
+}

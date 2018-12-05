@@ -1,0 +1,92 @@
+<template>
+  <lightning-card title="Reactive Testing (drag the slider!)">
+    <lightning-layout horizontal-align="spread">
+
+      <lightning-layout-item padding="around-small">
+        <lightning-layout horizontal-align="spread">
+          <lightning-layout-item>
+            Default: <c-progress-ring current={sliderValue}></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill: <c-progress-ring current={sliderValue} direction="fill"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain: <c-progress-ring current={sliderValue} direction="drain"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill/Warning: <c-progress-ring current={sliderValue} direction="fill" theme="warning"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain/Warning: <c-progress-ring current={sliderValue} direction="drain" theme="warning"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill/Active Step: <c-progress-ring current={sliderValue} direction="fill" theme="active-step"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain/Active Step: <c-progress-ring current={sliderValue} direction="drain" theme="active-step"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill/Complete: <c-progress-ring current={sliderValue} direction="fill" theme="complete"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain/Complete: <c-progress-ring current={sliderValue} direction="drain" theme="complete"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill/Expire: <c-progress-ring current={sliderValue} direction="fill" theme="expired"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain/Expire: <c-progress-ring current={sliderValue} direction="drain" theme="expired"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Autocomplete: <c-progress-ring current={sliderValue} direction="drain" autocomplete></c-progress-ring>
+          </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout horizontal-align="spread">
+          <lightning-layout-item>
+            Default: <c-progress-ring current={sliderValue} size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill: <c-progress-ring current={sliderValue} direction="fill" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain: <c-progress-ring current={sliderValue} direction="drain" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill/Warning: <c-progress-ring current={sliderValue} direction="fill" theme="warning" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain/Warning: <c-progress-ring current={sliderValue} direction="drain" theme="warning" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill/Active Step: <c-progress-ring current={sliderValue} direction="fill" theme="active-step" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain/Active Step: <c-progress-ring current={sliderValue} direction="drain" theme="active-step" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill/Complete: <c-progress-ring current={sliderValue} direction="fill" theme="complete" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain/Complete: <c-progress-ring current={sliderValue} direction="drain" theme="complete" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Fill/Expire: <c-progress-ring current={sliderValue} direction="fill" theme="expired" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Drain/Expire: <c-progress-ring current={sliderValue} direction="drain" theme="expired" size="large"></c-progress-ring>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            Autocomplete: <c-progress-ring current={sliderValue} direction="drain" autocomplete size="large"></c-progress-ring>
+          </lightning-layout-item>
+        </lightning-layout>
+      </lightning-layout-item>
+
+      <lightning-layout-item padding="around-small" size="2">
+        <lightning-slider value="50" step="1" min="0" max="100" onchange={slid}></lightning-slider>
+      </lightning-layout-item>
+    </lightning-layout>
+  </lightning-card>
+
+
+
+</template>

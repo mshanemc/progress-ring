@@ -1,6 +1,6 @@
-import { Element, api, track } from 'engine';
+import { LightningElement, api, track } from 'lwc';
 
-export default class progress_ring extends Element {
+export default class progress_ring extends LightningElement {
 
   min = 0;
   max = 100;
@@ -25,7 +25,6 @@ export default class progress_ring extends Element {
       }
   }
 
-  @api
   get direction() {
     return this._direction;
   }
@@ -39,7 +38,6 @@ export default class progress_ring extends Element {
     }
   }
 
-  @api
   get current() {
     return this._current;
   }
