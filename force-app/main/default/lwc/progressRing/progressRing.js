@@ -1,10 +1,9 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api, track } from "lwc";
 
 export default class progress_ring extends LightningElement {
-
   min = 0;
   max = 100;
-  themeclass = '';
+  themeclass = "";
   _current = 0;
   _direction;
   inverter;
@@ -16,13 +15,13 @@ export default class progress_ring extends LightningElement {
 
   @api
   set direction(value) {
-    if (value === 'drain') {
-        this.inverter = 1;
-        this.filldrain = 1;
-      } else if (value === 'fill') {
-        this.inverter = -1;
-        this.filldrain = 0;
-      }
+    if (value === "drain") {
+      this.inverter = 1;
+      this.filldrain = 1;
+    } else if (value === "fill") {
+      this.inverter = -1;
+      this.filldrain = 0;
+    }
   }
 
   get direction() {
@@ -30,7 +29,7 @@ export default class progress_ring extends LightningElement {
   }
 
   @api
-  set current(value){
+  set current(value) {
     this._current = value;
     // don't do until after connectedCallback()
     if (this.show) {
@@ -44,14 +43,14 @@ export default class progress_ring extends LightningElement {
 
   @track d;
   @track show = false;
-  @track computedOuterClass = 'slds-progress-ring';
+  @track computedOuterClass = "slds-progress-ring";
   @track isWarning = false;
   @track isExpired = false;
   @track isComplete = false;
 
   constructor() {
     super();
-    this.direction = 'fill';
+    this.direction = "fill";
   }
 
   connectedCallback() {
@@ -61,33 +60,33 @@ export default class progress_ring extends LightningElement {
   }
 
   init() {
-    if (!this.theme){
-      this.themeclass = '';
-    } else if (this.theme === 'warning') {
-      this.themeclass = 'slds-progress-ring_warning';
-    } else if (this.theme === 'expired') {
-      this.themeclass = 'slds-progress-ring_expired';
-    } else if (this.theme === 'complete') {
-      this.themeclass = 'slds-progress-ring_complete';
-    } else if (this.theme === 'active-step') {
-      this.themeclass = 'slds-progress-ring_active-step';
+    if (!this.theme) {
+      this.themeclass = "";
+    } else if (this.theme === "warning") {
+      this.themeclass = "slds-progress-ring_warning";
+    } else if (this.theme === "expired") {
+      this.themeclass = "slds-progress-ring_expired";
+    } else if (this.theme === "complete") {
+      this.themeclass = "slds-progress-ring_complete";
+    } else if (this.theme === "active-step") {
+      this.themeclass = "slds-progress-ring_active-step";
     }
 
-    this.isWarning = this.theme === 'warning';
-    this.isExpired = this.theme === 'expired';
-    this.isComplete = this.theme === 'complete';
+    this.isWarning = this.theme === "warning";
+    this.isExpired = this.theme === "expired";
+    this.isComplete = this.theme === "complete";
 
     this.computeClass();
   }
 
   computeClass() {
-    let tempclass = 'slds-progress-ring';
+    let tempclass = "slds-progress-ring";
 
     if (this.themeclass) {
       tempclass = `${tempclass} ${this.themeclass}`;
     }
 
-    if (this.size === 'large') {
+    if (this.size === "large") {
       tempclass = `${tempclass} slds-progress-ring_large`;
     }
 
@@ -95,7 +94,6 @@ export default class progress_ring extends LightningElement {
   }
 
   recaclc() {
-
     const fillPercent = this._current / this.max;
 
     const arcx = Math.cos(2 * Math.PI * fillPercent);
@@ -105,9 +103,9 @@ export default class progress_ring extends LightningElement {
     this.d = `M 1 0 A 1 1 0 ${islong} ${this.filldrain} ${arcx} ${arcy} L 0 0`;
 
     // handling for autocomplete
-    if (this.autocomplete){
-        if (fillPercent === 1) {
-        this.themeclass = 'slds-progress-ring_complete';
+    if (this.autocomplete) {
+      if (fillPercent === 1) {
+        this.themeclass = "slds-progress-ring_complete";
         this.isComplete = true;
         this.computeClass();
       } else {
@@ -115,5 +113,4 @@ export default class progress_ring extends LightningElement {
       }
     }
   }
-
 }
