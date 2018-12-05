@@ -3,11 +3,11 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c-progress_ring": [
-                "progress_ring/progress_ring.js"
+            "c-progress-ring": [
+                "progress_ring/progressRing.js"
             ],
-            "c-reactive_demo": [
-                "../../../../implementation/main/default/lightningcomponents/reactive_demo/reactive_demo.js"
+            "c-reactive-demo": [
+                "../../../../implementation/main/default/lwc/reactive_demo/reactiveDemo.js"
             ]
         }
     },
