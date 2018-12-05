@@ -4,7 +4,7 @@
         "baseUrl": ".",
         "paths": {
             "c-progress-ring": [
-                "progress_ring/progressRing.js"
+                "progressRing/progressRing.js"
             ],
             "c-reactive-demo": [
                 "../../../../implementation/main/default/lwc/reactive_demo/reactiveDemo.js"
