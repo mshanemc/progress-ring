@@ -10,3 +10,7 @@ force-app/main/default/lwc/.eslintrc.json
 implementation/main/default/lwc/jsconfig.json
 
 implementation/main/default/lwc/.eslintrc.json
+
+**/jsconfig.json
+
+**/.eslintrc.json

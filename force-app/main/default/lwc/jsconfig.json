@@ -3,16 +3,24 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c-progress-ring": [
+            "c/progressRing": [
                 "progressRing/progressRing.js"
             ],
-            "c-reactive-demo": [
-                "../../../../implementation/main/default/lwc/reactive_demo/reactiveDemo.js"
+            "c/reactiveDemo": [
+                "../../../../implementation/main/default/lwc/reactiveDemo/reactiveDemo.js"
+            ],
+            "c/staticTesting": [
+                "../../../../implementation/main/default/lwc/staticTesting/staticTesting.js"
             ]
         }
     },
     "include": [
         "**/*",
         "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ]
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
 }

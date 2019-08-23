@@ -3,16 +3,24 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c-progress_ring": [
-                "../../../../force-app/main/default/lwc/progress_ring/progress_ring.js"
+            "c/progressRing": [
+                "../../../../force-app/main/default/lwc/progressRing/progressRing.js"
             ],
-            "c-reactive_demo": [
-                "reactive_demo/reactive_demo.js"
+            "c/reactiveDemo": [
+                "reactiveDemo/reactiveDemo.js"
+            ],
+            "c/staticTesting": [
+                "staticTesting/staticTesting.js"
             ]
         }
     },
     "include": [
         "**/*",
         "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ]
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
 }
