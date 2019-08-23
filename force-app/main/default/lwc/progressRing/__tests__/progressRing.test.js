@@ -2,6 +2,26 @@ import { createElement } from 'lwc';
 import progressRing from 'c/progressRing';
 
 describe('c-progress-ring', () => {
+    // first child div, has computed class on it.
+    const getOuterDiv = element => element.shadowRoot.querySelector('div');
+
+    // themed icons
+    const getIcon = element =>
+        element.shadowRoot.querySelector(
+            `div.slds-progress-ring__content lightning-icon`
+        );
+
+    // boilerplate element creation + api properties
+    const instantiator = (options = {}) => {
+        let element = createElement('c-progress-ring', {
+            is: progressRing
+        });
+
+        element = Object.assign(element, options);
+        document.body.appendChild(element);
+        return element;
+    };
+
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -10,34 +30,77 @@ describe('c-progress-ring', () => {
     });
 
     it('no inputs at all', () => {
-        // Create element
-        const element = createElement('c-progress-ring', {
-            is: progressRing
+        const element = instantiator();
+
+        expect(getOuterDiv(element).className).toBe('slds-progress-ring');
+
+        expect(
+            element.shadowRoot.querySelector('div div:nth-child(1)').className
+        ).toBe('slds-progress-ring__progress');
+
+        expect(
+            element.shadowRoot.querySelector('div div:nth-child(2)').className
+        ).toBe('slds-progress-ring__content');
+
+        expect(
+            element.shadowRoot
+                .querySelector('path.slds-progress-ring__path')
+                .getAttribute('d')
+        ).toBeTruthy();
+    });
+
+    it('does fill', () => {
+        const element = instantiator({
+            direction: 'fill',
+            current: 50
         });
-        document.body.appendChild(element);
 
-        const outerDiv = element.shadowRoot.querySelector('div');
-        expect(outerDiv.className).toBe('slds-progress-ring');
+        expect(getOuterDiv(element).className).toBe('slds-progress-ring');
 
-        const ring = element.shadowRoot.querySelector('div div:nth-child(1)');
-        expect(ring.className).toBe('slds-progress-ring__progress');
+        expect(
+            element.shadowRoot.querySelector('div div:nth-child(1)').className
+        ).toBe('slds-progress-ring__progress');
 
-        const content = element.shadowRoot.querySelector(
-            'div div:nth-child(2)'
-        );
-        expect(content.className).toBe('slds-progress-ring__content');
+        expect(
+            element.shadowRoot.querySelector('div div:nth-child(2)').className
+        ).toBe('slds-progress-ring__content');
+
+        expect(
+            element.shadowRoot
+                .querySelector('path.slds-progress-ring__path')
+                .getAttribute('d')
+        ).toBeTruthy();
+    });
+
+    it('does drain', () => {
+        const element = instantiator({
+            direction: 'drain',
+            current: 50
+        });
+
+        expect(getOuterDiv(element).className).toBe('slds-progress-ring');
+
+        expect(
+            element.shadowRoot.querySelector('div div:nth-child(1)').className
+        ).toBe('slds-progress-ring__progress');
+
+        expect(
+            element.shadowRoot.querySelector('div div:nth-child(2)').className
+        ).toBe('slds-progress-ring__content');
+
+        expect(
+            element.shadowRoot
+                .querySelector('path.slds-progress-ring__path')
+                .getAttribute('d')
+        ).toBeTruthy();
     });
 
     it('gets min/max/current passthrough', () => {
-        // Create element
-        const element = createElement('c-progress-ring', {
-            is: progressRing
+        const element = instantiator({
+            current: 50
         });
-        element.current = 50;
-        document.body.appendChild(element);
 
-        const outerDiv = element.shadowRoot.querySelector('div');
-        expect(outerDiv.className).toBe('slds-progress-ring');
+        expect(getOuterDiv(element).className).toBe('slds-progress-ring');
 
         const ring = element.shadowRoot.querySelector('div div:nth-child(1)');
         expect(ring.className).toBe('slds-progress-ring__progress');
@@ -47,100 +110,69 @@ describe('c-progress-ring', () => {
     });
 
     it('handles large format', () => {
-        // Create element
-        const element = createElement('c-progress-ring', {
-            is: progressRing
+        const element = instantiator({
+            size: 'large'
         });
-        element.size = 'large';
-        document.body.appendChild(element);
 
-        const outerDiv = element.shadowRoot.querySelector('div');
-        expect(outerDiv.className).toContain('slds-progress-ring_large');
+        expect(getOuterDiv(element).className).toContain(
+            'slds-progress-ring_large'
+        );
     });
 
     it('autocomplete not complete', () => {
-        // Create element
-        const element = createElement('c-progress-ring', {
-            is: progressRing
+        const element = instantiator({
+            current: 50,
+            autocomplete: true
         });
-        element.current = 50;
-        element.autocomplete = true;
-        document.body.appendChild(element);
 
-        const outerDiv = element.shadowRoot.querySelector('div');
-        expect(outerDiv.className).toBe('slds-progress-ring');
+        expect(getOuterDiv(element).className).toBe('slds-progress-ring');
     });
 
     it('autocomplete is complete', () => {
-        const element = createElement('c-progress-ring', {
-            is: progressRing
+        const element = instantiator({
+            current: 100,
+            autocomplete: true
         });
-        element.current = 100;
-        element.autocomplete = true;
-        document.body.appendChild(element);
 
-        const outerDiv = element.shadowRoot.querySelector('div');
-        expect(outerDiv.className).toBe(
+        expect(getOuterDiv(element).className).toBe(
             'slds-progress-ring slds-progress-ring_complete'
         );
 
-        const completeIcon = element.shadowRoot.querySelector(
-            `div.slds-progress-ring__content lightning-icon`
-        );
-        expect(completeIcon.iconName).toBe('utility:check');
+        expect(getIcon(element).iconName).toBe('utility:check');
     });
 
     it('theme: warning', () => {
-        const element = createElement('c-progress-ring', {
-            is: progressRing
+        const element = instantiator({
+            theme: 'warning'
         });
-        element.theme = 'warning';
-        document.body.appendChild(element);
 
-        const themeIcon = element.shadowRoot.querySelector(
-            `div.slds-progress-ring__content lightning-icon`
-        );
-        expect(themeIcon.iconName).toBe('utility:warning');
+        expect(getIcon(element).iconName).toBe('utility:warning');
 
-        const outerDiv = element.shadowRoot.querySelector('div');
-        expect(outerDiv.className).toBe(
+        expect(getOuterDiv(element).className).toBe(
             'slds-progress-ring slds-progress-ring_warning'
         );
     });
 
     it('theme: error', () => {
-        const element = createElement('c-progress-ring', {
-            is: progressRing
+        const element = instantiator({
+            theme: 'expired'
         });
-        element.theme = 'expired';
-        document.body.appendChild(element);
 
-        const themeIcon = element.shadowRoot.querySelector(
-            `div.slds-progress-ring__content lightning-icon`
-        );
-        expect(themeIcon.iconName).toBe('utility:error');
+        expect(getIcon(element).iconName).toBe('utility:error');
 
-        const outerDiv = element.shadowRoot.querySelector('div');
-        expect(outerDiv.className).toBe(
+        expect(getOuterDiv(element).className).toBe(
             'slds-progress-ring slds-progress-ring_expired'
         );
     });
 
     it('theme: active step', () => {
-        const element = createElement('c-progress-ring', {
-            is: progressRing
+        const element = instantiator({
+            theme: 'active-step'
         });
-        element.theme = 'active-step';
-        document.body.appendChild(element);
 
-        const themeIcon = element.shadowRoot.querySelector(
-            `div.slds-progress-ring__content lightning-icon`
-        );
+        expect(getIcon(element)).toBe(null);
 
-        expect(themeIcon).toBe(null);
-
-        const outerDiv = element.shadowRoot.querySelector('div');
-        expect(outerDiv.className).toBe(
+        expect(getOuterDiv(element).className).toBe(
             'slds-progress-ring slds-progress-ring_active-step'
         );
     });
