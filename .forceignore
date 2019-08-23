@@ -14,3 +14,5 @@ implementation/main/default/lwc/.eslintrc.json
 **/jsconfig.json
 
 **/.eslintrc.json
+
+**/__tests__
