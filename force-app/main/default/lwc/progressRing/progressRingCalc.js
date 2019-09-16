@@ -1,12 +1,13 @@
-const getArc = (current, max, direction) => {
-    const fillPercent = current / max;
+const getArc = (current, direction) => {
+    const fillPercent = current / 100;
 
-    let filldrain = 1;
-    let inverter = 1;
+    // default for fill
+    let filldrain = 0;
+    let inverter = -1;
 
-    if (direction === 'fill') {
-        filldrain = 0;
-        inverter = -1;
+    if (direction === 'drain') {
+        filldrain = 1;
+        inverter = 1;
     }
 
     const arcx = Math.cos(2 * Math.PI * fillPercent);
@@ -20,36 +21,36 @@ const getArc = (current, max, direction) => {
 };
 
 const getOuterClass = options => {
-    let { theme, autocomplete, current, max, size } = options;
+    let { variant, current, size } = options;
 
     let tempclass = 'slds-progress-ring';
-    let isWarning = false;
-    let isExpired = false;
-    let isComplete = false;
-
-    if (theme === 'warning') {
-        tempclass = `${tempclass} slds-progress-ring_warning`;
-        isWarning = true;
-    }
-    if (theme === 'expired') {
-        tempclass = `${tempclass} slds-progress-ring_expired`;
-        isExpired = true;
-    }
-    if (theme === 'active-step') {
-        tempclass = `${tempclass} slds-progress-ring_active-step`;
-    }
-    if (theme === 'complete' || (autocomplete && current === max)) {
-        tempclass = `${tempclass} slds-progress-ring_complete`;
-        isComplete = true;
-        isWarning = false;
-        isExpired = false;
-    }
+    let computedIconName = '';
+    let computedAltText = '';
 
     if (size === 'large') {
         tempclass = `${tempclass} slds-progress-ring_large`;
     }
 
-    return { computedOuterClass: tempclass, isWarning, isExpired, isComplete };
+    if (variant === 'warning') {
+        tempclass = `${tempclass} slds-progress-ring_warning`;
+        computedIconName = 'utility:warning';
+        computedAltText = 'Warning';
+    } else if (variant === 'expired') {
+        tempclass = `${tempclass} slds-progress-ring_expired`;
+        computedIconName = 'utility:error';
+        computedAltText = 'Expired';
+    } else if (variant === 'active-step') {
+        tempclass = `${tempclass} slds-progress-ring_active-step`;
+    } else if (
+        variant === 'complete' ||
+        (variant === 'autocomplete' && current === 100)
+    ) {
+        tempclass = `${tempclass} slds-progress-ring_complete`;
+        computedIconName = 'utility:check';
+        computedAltText = 'Complete';
+    }
+
+    return { computedOuterClass: tempclass, computedIconName, computedAltText };
 };
 
 export { getArc, getOuterClass };

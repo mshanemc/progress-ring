@@ -6,7 +6,7 @@
                     <template for:each={zeroToHundred} for:item="val">
                         <c-progress-ring
                             key={val}
-                            current={val}
+                            value={val}
                             direction="drain"
                         ></c-progress-ring>
                     </template>
@@ -19,7 +19,7 @@
                     <template for:each={zeroToHundred} for:item="val">
                         <c-progress-ring
                             key={val}
-                            current={val}
+                            value={val}
                             direction="fill"
                         ></c-progress-ring>
                     </template>
@@ -33,9 +33,9 @@
                     <template for:each={zeroToHundred} for:item="val">
                         <c-progress-ring
                             key={val}
-                            current={val}
+                            value={val}
                             direction="fill"
-                            theme="warning"
+                            variant="warning"
                         ></c-progress-ring>
                     </template>
                 </div>
@@ -46,22 +46,22 @@
             <lightning-card title="Expired/Complete" variant="base">
                 <div class="slds-p-horizontal_medium">
                     <c-progress-ring
-                        current="0"
+                        value="0"
                         direction="drain"
-                        theme="expired"
+                        variant="expired"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="100"
+                        value="100"
                         direction="drain"
-                        theme="complete"
+                        variant="complete"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="0"
+                        value="0"
                         direction="drain"
                         autocomplete
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="100"
+                        value="100"
                         direction="drain"
                         autocomplete
                     ></c-progress-ring>
@@ -75,9 +75,9 @@
                     <template for:each={zeroToHundred} for:item="val">
                         <c-progress-ring
                             key={val}
-                            current={val}
+                            value={val}
                             direction="fill"
-                            theme="active-step"
+                            variant="active-step"
                         ></c-progress-ring>
                     </template>
                 </div>
@@ -91,52 +91,52 @@
                 <lightning-layout-item padding="around-large">
                     Regular:
                     <c-progress-ring
-                        current="0"
+                        value="0"
                         direction="fill"
-                        theme="expired"
+                        variant="expired"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="10"
+                        value="10"
                         direction="fill"
-                        theme="warning"
+                        variant="warning"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="20"
+                        value="20"
                         direction="fill"
-                        theme="active-step"
+                        variant="active-step"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="30"
-                        direction="fill"
-                    ></c-progress-ring>
-                    <c-progress-ring
-                        current="40"
+                        value="30"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="50"
+                        value="40"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="60"
+                        value="50"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="70"
+                        value="60"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="80"
+                        value="70"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="90"
+                        value="80"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
-                        current="100"
+                        value="90"
                         direction="fill"
-                        theme="complete"
+                    ></c-progress-ring>
+                    <c-progress-ring
+                        value="100"
+                        direction="fill"
+                        variant="complete"
                     ></c-progress-ring>
                 </lightning-layout-item>
 
@@ -144,62 +144,62 @@
                     Large:
                     <c-progress-ring
                         size="large"
-                        current="0"
+                        value="0"
                         direction="fill"
-                        theme="expired"
+                        variant="expired"
                     ></c-progress-ring>
                     <c-progress-ring
                         size="large"
-                        current="10"
+                        value="10"
                         direction="fill"
-                        theme="warning"
+                        variant="warning"
                     ></c-progress-ring>
                     <c-progress-ring
                         size="large"
-                        current="20"
+                        value="20"
                         direction="fill"
-                        theme="active-step"
+                        variant="active-step"
                     ></c-progress-ring>
                     <c-progress-ring
                         size="large"
-                        current="30"
-                        direction="fill"
-                    ></c-progress-ring>
-                    <c-progress-ring
-                        size="large"
-                        current="40"
+                        value="30"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
                         size="large"
-                        current="50"
+                        value="40"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
                         size="large"
-                        current="60"
+                        value="50"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
                         size="large"
-                        current="70"
+                        value="60"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
                         size="large"
-                        current="80"
+                        value="70"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
                         size="large"
-                        current="90"
+                        value="80"
                         direction="fill"
                     ></c-progress-ring>
                     <c-progress-ring
                         size="large"
-                        current="100"
+                        value="90"
                         direction="fill"
-                        theme="complete"
+                    ></c-progress-ring>
+                    <c-progress-ring
+                        size="large"
+                        value="100"
+                        direction="fill"
+                        variant="complete"
                     ></c-progress-ring>
                 </lightning-layout-item>
             </lightning-layout>

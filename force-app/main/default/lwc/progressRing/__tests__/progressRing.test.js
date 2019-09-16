@@ -52,7 +52,7 @@ describe('c-progress-ring', () => {
     it('does fill', () => {
         const element = instantiator({
             direction: 'fill',
-            current: 50
+            value: 50
         });
 
         expect(getOuterDiv(element).className).toBe('slds-progress-ring');
@@ -75,7 +75,7 @@ describe('c-progress-ring', () => {
     it('does drain', () => {
         const element = instantiator({
             direction: 'drain',
-            current: 50
+            value: 50
         });
 
         expect(getOuterDiv(element).className).toBe('slds-progress-ring');
@@ -95,9 +95,9 @@ describe('c-progress-ring', () => {
         ).toBeTruthy();
     });
 
-    it('gets min/max/current passthrough', () => {
+    it('gets min/max/value passthrough', () => {
         const element = instantiator({
-            current: 50
+            value: 50
         });
 
         expect(getOuterDiv(element).className).toBe('slds-progress-ring');
@@ -121,7 +121,7 @@ describe('c-progress-ring', () => {
 
     it('autocomplete not complete', () => {
         const element = instantiator({
-            current: 50,
+            value: 50,
             autocomplete: true
         });
 
@@ -130,8 +130,8 @@ describe('c-progress-ring', () => {
 
     it('autocomplete is complete', () => {
         const element = instantiator({
-            current: 100,
-            autocomplete: true
+            value: 100,
+            variant: 'autocomplete'
         });
 
         expect(getOuterDiv(element).className).toBe(
@@ -141,9 +141,9 @@ describe('c-progress-ring', () => {
         expect(getIcon(element).iconName).toBe('utility:check');
     });
 
-    it('theme: warning', () => {
+    it('variant: warning', () => {
         const element = instantiator({
-            theme: 'warning'
+            variant: 'warning'
         });
 
         expect(getIcon(element).iconName).toBe('utility:warning');
@@ -153,9 +153,9 @@ describe('c-progress-ring', () => {
         );
     });
 
-    it('theme: error', () => {
+    it('variant: error', () => {
         const element = instantiator({
-            theme: 'expired'
+            variant: 'expired'
         });
 
         expect(getIcon(element).iconName).toBe('utility:error');
@@ -165,9 +165,9 @@ describe('c-progress-ring', () => {
         );
     });
 
-    it('theme: active step', () => {
+    it('variant: active step', () => {
         const element = instantiator({
-            theme: 'active-step'
+            variant: 'active-step'
         });
 
         expect(getIcon(element)).toBe(null);

@@ -2,28 +2,19 @@ import { LightningElement, api, track } from 'lwc';
 import { getArc, getOuterClass } from './progressRingCalc';
 
 export default class progress_ring extends LightningElement {
-    @api max = 100;
-    @api min = 0;
-    @api theme;
-    @api size;
-    @api autocomplete;
+    @api value = 0;
+    @api variant;
     @api direction = 'fill';
-    @api current;
+    @api size;
 
     @track d;
-    @track initialized = false;
     @track computedOuterClass = 'slds-progress-ring';
-    @track isWarning = false;
-    @track isExpired = false;
-    @track isComplete = false;
+    @track computedIconName;
+    @track computedAltText;
 
     connectedCallback() {
-        // validation
-        if (!['fill', 'drain'].includes(this.direction)) {
-            throw new Error(`direction must be either 'fill' or 'drain'`);
-        }
-        this.recalc();
         this.initialized = true;
+        this.recalc();
     }
 
     renderedCallback() {
@@ -32,10 +23,8 @@ export default class progress_ring extends LightningElement {
 
     recalc() {
         const result = getOuterClass({
-            theme: this.theme,
-            autocomplete: this.autocomplete,
-            current: Number(this.current),
-            max: Number(this.max),
+            variant: this.variant,
+            current: Number(this.value),
             size: this.size
         });
 
@@ -43,6 +32,6 @@ export default class progress_ring extends LightningElement {
             this[key] = result[key];
         });
 
-        this.d = getArc(this.current, this.max, this.direction);
+        this.d = getArc(this.value, this.direction);
     }
 }
